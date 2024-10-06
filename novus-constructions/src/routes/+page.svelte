@@ -2,9 +2,6 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import Placeholder from '$lib/components/Placeholder.svelte';
-	import Drawer, { Content } from '@smui/drawer';
-	import List, { Item, Text } from '@smui/list';
-	import IconButton from '@smui/icon-button';
 
 	let currentSection = 'home';
 
@@ -213,7 +210,7 @@
 	</div>
 {/if}
 
-<main class="pt-16 bg-background">
+<main class="pt-16 bg-background min-h-screen flex flex-col">
 	{#each sections as section}
 		<section
 			id={section}
@@ -239,11 +236,9 @@
 						<h1
 							class="text-6xl font-heading font-bold mb-6 text-primary leading-tight tracking-wide"
 						>
-							Καλώς ήρθατε στους Novus Constructions
+							Novus Constructions
 						</h1>
-						<p class="text-xl mb-10 text-secondary leading-relaxed">
-							Χτίζουμε το μέλλον, ένα έργο τη φορά
-						</p>
+						<p class="text-xl mb-10 text-secondary leading-relaxed">...κείμενο...</p>
 						<button
 							class="bg-accent hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition-all duration-200 transform hover:scale-105"
 							on:click={() => scrollToSection('contact')}
@@ -304,10 +299,9 @@
 				{:else if section === 'about'}
 					<div class="max-w-4xl mx-auto text-center">
 						<p class="text-xl mb-12 text-secondary leading-relaxed">
-							Οι Novus Constructions είναι μια κορυφαία κατασκευαστική εταιρεία με πάνω από 20
-							χρόνια εμπειρίας στην παράδοση έργων υψηλής ποιότητας. Η ομάδα των έμπειρων
-							επαγγελματιών μας είναι αφοσιωμένη στην αριστεία και την καινοτομία σε κάθε πτυχή της
-							δουλειάς μας.
+							Η Novus Constructions είναι μια κορυφαία κατασκευαστική εταιρεία με πάνω από 20 χρόνια
+							εμπειρίας στην παράδοση έργων υψηλής ποιότητας. Η ομάδα των έμπειρων επαγγελματιών μας
+							είναι αφοσιωμένη στην αριστεία και την καινοτομία σε κάθε πτυχή της δουλειάς μας.
 						</p>
 						<div class="flex flex-wrap justify-center gap-12">
 							<div class="bg-white p-8 rounded-lg shadow-lg w-64">
@@ -374,6 +368,14 @@
 			</div>
 		</section>
 	{/each}
+
+	<footer class="bg-white py-8">
+		<div class="container mx-auto px-4 text-center">
+			<p class="text-secondary">
+				© Novus Constructions {new Date().getFullYear()}. Όλα τα δικαιώματα διατηρούνται.
+			</p>
+		</div>
+	</footer>
 </main>
 
 <style lang="postcss">
@@ -397,5 +399,10 @@
 
 	:global(.mdc-drawer__content) {
 		width: 200px;
+	}
+
+	/* Add this style to ensure proper section spacing */
+	section {
+		scroll-margin-top: 4rem; /* Adjust this value to match your header height */
 	}
 </style>
